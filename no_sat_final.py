@@ -261,7 +261,8 @@ class Simulation(object):
             self.time.append(i * self.dt / 31536000)
             
         if i % 500 == 0 and i != 0:
-            self.nrggraph()
+            # self.nrggraph()
+            pass
 
         for a in range(len(self.bodies)):
             body = self.bodies[a]
@@ -280,15 +281,15 @@ class Simulation(object):
         
         for body_index, body in enumerate(self.bodies):
             body = self.bodies[body_index]
-            self.patches.append(plt.Circle((body.position[0], body.position[1]), body.radius, color = body.colour, animated = True))
+            self.patches.append(plt.Circle((body.position[0], body.position[1]), body.radius, color = body.colour, animated = False))
             ax1.add_patch(self.patches[body_index])
         
         ax1.axis('scaled')
-        ax1.set_xlim(-5e11,5e11)
-        ax1.set_ylim(-5e11,5e11)
+        ax1.set_xlim(-2.5e11,2.5e11)
+        ax1.set_ylim(-2.5e11,2.5e11)
         
-        ani = FuncAnimation(fig1, self.animate, init_func = self.init, frames = 10000, repeat = False, interval = 20, blit = True)
-            
+        anim = FuncAnimation(fig1, self.animate, init_func = self.init, frames = 10000, repeat = False, interval = 20, blit = True)
+        plt.show()
         
     def nrggraph(self):
         
